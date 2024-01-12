@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <section>
+  <section class="h-80 border-solid border-2 border-sky-500 mt-6">
     <div class="flex justify-between max-w-4xl h-10 m-auto mt-6">
       <p class="flex items-center">ซื้อบัตรเติมเงิน</p>
       <div class="flex">
@@ -10,27 +10,27 @@
     <div class="flex justify-between max-w-4xl m-auto mt-6">
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/buygard/GARENA SHELLS.png" alt="" srcset="" />
-        <p class="">GARENA SHELLS</p>
+        <p class="mt-1">GARENA SHELLS</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="/assets/buygard/RIOT.png" alt="" srcset="" />
-        <p class="">AIS</p>
+        <p class="mt-1">RIOT</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/buygard/AIS.png" alt="" srcset="" />
-        <p class="">AIS</p>
+        <p class="mt-1">AIS</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/buygard/LINE.png" alt="" srcset="" />
-        <p class="">LINE</p>
+        <p class="mt-1">LINE</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/buygard/ROBLOX GIFT CARD.png" alt="" srcset="" />
-        <p class="">ROBLOX CARD</p>
+        <p class="mt-1">ROBLOX CARD</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/buygard/NETFLIX.png" alt="" srcset="" />
-        <p class="">NETFLIX CARD</p>
+        <p class="mt-1">NETFLIX CARD</p>
       </span>
     </div>
   </section>

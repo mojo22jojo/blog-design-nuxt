@@ -1,9 +1,12 @@
 <script setup>
-import MenuGard from "~/components/homelogin/MenuGard.vue";
+import SpecialGard from "~/components/homelogin/SpecialGard.vue";
 import Banner from "~/components/Banner.vue";
 import Ranking from "~/components/homelogin/Ranking.vue";
 import TermGameOnline from "~/components/homelogin/TermGameOnline.vue";
-import BuyGardGame from "~/components/homelogin/BuyGardGame.vue";
+import BuyGameGard from "~/components/homelogin/BuyGameGard.vue";
+import BuyPasswordGame from "~/components/homelogin/BuyPasswordGame.vue";
+import About from "~/components/homelogin/About.vue";
+import Promotion from "~/components/homelogin/Promotion.vue";
 </script>
 <template>
   <div>
@@ -61,7 +64,7 @@ import BuyGardGame from "~/components/homelogin/BuyGardGame.vue";
     </div>
     <template>
       <div>
-        <MenuGard />
+        <SpecialGard />
       </div>
     </template>
     <template>
@@ -76,7 +79,22 @@ import BuyGardGame from "~/components/homelogin/BuyGardGame.vue";
     </template>
     <template>
       <div>
-        <BuyGardGame />
+        <BuyGameGard />
+      </div>
+    </template>
+    <template>
+      <div>
+        <BuyPasswordGame />
+      </div>
+    </template>
+    <template>
+      <div>
+        <About />
+      </div>
+    </template>
+    <template>
+      <div>
+        <Promotion />
       </div>
     </template>
   </main>

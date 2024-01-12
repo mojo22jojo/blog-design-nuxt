@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <section>
+  <section class="h-80 border-solid border-2 border-sky-500 mt-6">
     <div class="flex justify-between max-w-4xl h-10 m-auto mt-6">
       <p class="flex items-center">ข้อเสนอพิเศษ</p>
       <div class="flex">
@@ -10,27 +10,27 @@
     <div class="flex justify-between max-w-4xl m-auto mt-6">
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/gard/FREEFIRE.png" alt="" srcset="" />
-        <p class="">FREE FIRE</p>
+        <p class="mt-1">FREE FIRE</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/gard/PUBG.png" alt="" srcset="" />
-        <p class="flex items-center">PUBG MOBILE (TH)</p>
+        <p class="mt-1">PUBG MOBILE</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/gard/NETFLIX.png" alt="" srcset="" />
-        <p class="flex items-center">NETFLIX GIFT CARD</p>
+        <p class="mt-1">NETFLIX CARD</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/gard/ROV.png" alt="" srcset="" />
-        <p class="flex items-center">ROV MOBILE NOBA</p>
+        <p class="mt-1">ROV MOBILE</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/gard/IDENTITY V.png" alt="" srcset="" />
-        <p class="flex items-center">IDENTITY V</p>
+        <p class="mt-1">IDENTITY V</p>
       </span>
       <span class="flex-col items-center flex justify-center">
         <img src="~/assets/gard/ACE.png" alt="" srcset="" />
-        <p class="flex items-center">ACE RACER</p>
+        <p class="mt-1">ACE RACER</p>
       </span>
     </div>
   </section>
