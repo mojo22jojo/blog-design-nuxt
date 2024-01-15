@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <section class="h-80 border-solid border-2 border-sky-500 mt-6">
+  <section class="h-80 mt-6">
     <div class="flex justify-between max-w-4xl h-10 m-auto mt-6">
       <p class="flex items-center">ข้อเสนอพิเศษ</p>
       <div class="flex">
