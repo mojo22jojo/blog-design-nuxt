@@ -1,8 +1,8 @@
 <script setup></script>
 <template>
-  <section class="h-80 mt-6">
+  <section class="h-80 mt-16">
     <div
-      class="flex-col items-center flex justify-center max-w-3xl h-10 m-auto mt-6"
+      class="flex-col items-center flex justify-center max-w-3xl h-10 m-auto"
     >
       <p class="text-3xl font-bold">ทำไมถึงต้องใช้บริการของร้าน ?</p>
       <p class="flex mt-4 text-base">

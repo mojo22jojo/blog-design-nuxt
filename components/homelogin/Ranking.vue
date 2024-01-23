@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
-  <section>
-    <div class="flex justify-between max-w-4xl h-10 m-auto mt-6">
+  <section class="mt-16">
+    <div class="flex justify-between max-w-4xl h-10 m-auto">
       <p class="flex items-center">การจัดอันดับ</p>
       <div class="flex">
         <UButton class="justify-center rounded-full w-32">ดูทั้งหมด</UButton>

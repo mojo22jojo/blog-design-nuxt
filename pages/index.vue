@@ -1,17 +1,34 @@
-<script setup>
-import SpecialGard from "~/components/homelogin/SpecialGard.vue";
-import Banner from "~/components/Banner.vue";
-import Ranking from "~/components/homelogin/Ranking.vue";
-import TermGameOnline from "~/components/homelogin/TermGameOnline.vue";
-import BuyGameGard from "~/components/homelogin/BuyGameGard.vue";
-import BuyPasswordGame from "~/components/homelogin/BuyPasswordGame.vue";
-import About from "~/components/homelogin/About.vue";
-import Promotion from "~/components/homelogin/Promotion.vue";
+<script lang="ts" setup>
+// import Promotion from "~/components/homelogin/Promotion.vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import {
+  getResultDataGameSport,
+  getImagePosterGame,
+  getResultDataGameHits,
+  getResultDataGameCasino,
+  getResultDataGameSlot,
+  getResultDataGameLotto,
+} from "~/services/result";
+import "swiper/css";
+// import { Navigation, Mousewheel, Keyboard } from "swiper/modules";
+import SwiperCore, { Navigation, Pagination } from "swiper/core"; // เพิ่มการนำเข้า SwiperCore และ Pagination
+
+SwiperCore.use([Navigation, Pagination]); // นำเข้า Pagination เพื่อให้ Swiper ใช้งาน
+
+const { data: dataGameSport } = await getResultDataGameSport();
+const { data: dataGameHits } = await getResultDataGameHits();
+const { data: dataGameCasino } = await getResultDataGameCasino();
+const { data: dataGameSlot } = await getResultDataGameSlot();
+const { data: dataGameLotto } = await getResultDataGameLotto();
+// const { data: dataGameSport } = await getResultDataGameSport();
+console.log(dataGameHits.value);
+console.log(dataGameSlot);
+// สร้าง computed property ที่คัดกรองข้อมูลเพื่อให้แสดงเพียง 5 ไอเทม
 </script>
 <template>
-  <div>
+  <!-- <div>
     <Banner />
-  </div>
+  </div> -->
   <main>
     <div class="flex justify-between max-w-4xl m-auto mt-6">
       <UButton
@@ -63,39 +80,172 @@ import Promotion from "~/components/homelogin/Promotion.vue";
       </UButton>
     </div>
     <template>
-      <div>
-        <SpecialGard />
-      </div>
+      <section class="h-80 mt-6">
+        <div class="flex justify-between max-w-4xl h-10 m-auto mt-6">
+          <p class="flex items-center">5 เกมยอดฮิต</p>
+          <div class="flex"></div>
+        </div>
+        <div class="flex justify-between max-w-4xl m-auto mt-6">
+          <span
+            v-for="item in dataGameHits"
+            :key="item.id"
+            class="flex-col items-center flex justify-center"
+          >
+            <img
+              :src="item.image"
+              alt=""
+              srcset=""
+              class="w-36 h-44 rounded-lg"
+            />
+            <p class="mt-1">{{ item.game }}</p>
+          </span>
+        </div>
+      </section>
     </template>
     <template>
-      <div>
-        <Ranking />
-      </div>
+      <section class="h-80 mt-16">
+        <div class="flex justify-between max-w-4xl h-10 m-auto">
+          <p class="flex items-center">เดิมพันกีฬา</p>
+          <div class="flex">
+            <NuxtLink to="/_lang/sport" class="flex justify-center">
+              <UButton class="justify-center rounded-full w-32"
+                >ดูทั้งหมด</UButton
+              >
+            </NuxtLink>
+          </div>
+        </div>
+        <div class="flex justify-between max-w-4xl m-auto mt-6">
+          <Swiper
+            :slidesPerView="5"
+            :spaceBetween="30"
+            :pagination="{
+              clickable: true,
+            }"
+            :Navigation="true"
+            class="mySwiper"
+          >
+            <SwiperSlide
+              v-for="item in dataGameSport"
+              :key="item.id"
+              class="flex-col items-center flex justify-center"
+            >
+              <img
+                :src="getImagePosterGame(item.providerName)"
+                alt=""
+                srcset=""
+                class="w-36 h-44 rounded-lg"
+              />
+              <p class="mt-1 text-sm">{{ item.providerName }}</p>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
     </template>
     <template>
-      <div>
-        <TermGameOnline />
-      </div>
+      <section class="h-80 mt-16">
+        <div class="flex justify-between max-w-4xl h-10 m-auto">
+          <p class="flex items-center">คาสิโน</p>
+          <div class="flex">
+            <NuxtLink to="/_lang/casino" class="flex justify-center">
+              <UButton class="justify-center rounded-full w-32"
+                >ดูทั้งหมด</UButton
+              >
+            </NuxtLink>
+          </div>
+        </div>
+        <div class="flex justify-between max-w-4xl m-auto mt-6">
+          <Swiper
+            :slidesPerView="5"
+            :spaceBetween="30"
+            :pagination="{
+              clickable: true,
+            }"
+            class="mySwiper"
+          >
+            <SwiperSlide
+              v-for="item in dataGameCasino"
+              :key="item.id"
+              class="flex-col items-center flex justify-center"
+            >
+              <img
+                :src="getImagePosterGame(item.providerName)"
+                alt=""
+                srcset=""
+                class="w-36 h-44 rounded-lg"
+              />
+              <p class="mt-1 text-sm">{{ item.providerName }}</p>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
     </template>
     <template>
-      <div>
-        <BuyGameGard />
-      </div>
+      <section class="h-80 mt-16">
+        <div class="flex justify-between max-w-4xl h-10 m-auto">
+          <p class="flex items-center">เกมสล็อต</p>
+          <div class="flex">
+            <NuxtLink to="/_lang/slot" class="flex justify-center">
+              <UButton class="justify-center rounded-full w-32"
+                >ดูทั้งหมด</UButton
+              >
+            </NuxtLink>
+          </div>
+        </div>
+        <div class="flex justify-between max-w-4xl m-auto mt-6">
+          <Swiper
+            :slidesPerView="5"
+            :spaceBetween="30"
+            :pagination="{
+              clickable: true,
+            }"
+            :Navigation="true"
+            class="mySwiper"
+          >
+            <SwiperSlide
+              v-for="item in dataGameSlot"
+              :key="item.id"
+              class="flex-col items-center flex justify-center"
+            >
+              <img
+                :src="getImagePosterGame(item.providerName)"
+                alt=""
+                srcset=""
+                class="w-36 h-44 rounded-lg"
+              />
+              <p class="mt-1 text-sm">{{ item.providerName }}</p>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
     </template>
     <template>
-      <div>
-        <BuyPasswordGame />
-      </div>
-    </template>
-    <template>
-      <div>
-        <About />
-      </div>
-    </template>
-    <template>
-      <div>
-        <Promotion />
-      </div>
+      <section class="h-80 mt-16">
+        <div class="flex justify-between max-w-4xl h-10 m-auto">
+          <p class="flex items-center">หวยออนไลน์</p>
+          <div class="flex">
+            <NuxtLink to="/_lang/lotto" class="flex justify-center">
+              <UButton class="justify-center rounded-full w-32"
+                >ดูทั้งหมด</UButton
+              >
+            </NuxtLink>
+          </div>
+        </div>
+        <div class="flex justify-between max-w-4xl m-auto mt-6">
+          <span
+            v-for="item in dataGameLotto"
+            :key="item.id"
+            class="flex-col items-center flex justify-center"
+          >
+            <img
+              :src="getImagePosterGame(item.providerName)"
+              alt=""
+              srcset=""
+              class="w-36 h-44 rounded-lg"
+            />
+            <p class="mt-1">{{ item.providerName }}</p>
+          </span>
+        </div>
+      </section>
     </template>
   </main>
 </template>

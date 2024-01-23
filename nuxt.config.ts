@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Term Game",
+      meta: [{ name: "description", content: "รายละเอียดเว็บไซต์" }],
     },
   },
   modules: ["@nuxt/ui"],
@@ -15,5 +16,11 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "light",
     fallback: "light",
+  },
+  // ssr: false,
+  runtimeConfig: {
+    public: {
+      API_URL_TYPE_GAME: process.env.API_URL_TYPE_GAME || "",
+    },
   },
 });

@@ -19,7 +19,7 @@ declare module 'nuxt/schema' {
    },
   }
   interface PublicRuntimeConfig {
-
+   API_URL_TYPE_GAME: string,
   }
 }
 declare module 'vue' {
