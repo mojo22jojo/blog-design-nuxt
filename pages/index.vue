@@ -1,5 +1,6 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 // import Promotion from "~/components/homelogin/Promotion.vue";
+
 import { Swiper, SwiperSlide } from "swiper/vue";
 import {
   getResultDataGameSport,
@@ -10,20 +11,31 @@ import {
   getResultDataGameLotto,
 } from "~/services/result";
 import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 // import { Navigation, Mousewheel, Keyboard } from "swiper/modules";
-import SwiperCore, { Navigation, Pagination } from "swiper/core"; // เพิ่มการนำเข้า SwiperCore และ Pagination
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Keyboard,
+} from "swiper/core";
 
-SwiperCore.use([Navigation, Pagination]); // นำเข้า Pagination เพื่อให้ Swiper ใช้งาน
+SwiperCore.use([Navigation, Pagination, Mousewheel, Keyboard]); // นำเข้า Pagination เพื่อให้ Swiper ใช้งาน
 
 const { data: dataGameSport } = await getResultDataGameSport();
 const { data: dataGameHits } = await getResultDataGameHits();
 const { data: dataGameCasino } = await getResultDataGameCasino();
 const { data: dataGameSlot } = await getResultDataGameSlot();
 const { data: dataGameLotto } = await getResultDataGameLotto();
-// const { data: dataGameSport } = await getResultDataGameSport();
-console.log(dataGameHits.value);
-console.log(dataGameSlot);
-// สร้าง computed property ที่คัดกรองข้อมูลเพื่อให้แสดงเพียง 5 ไอเทม
+
+// onMounted(async () => {
+//   dataGameSport.value = (await getResultDataGameSport()).data;
+
+//   watch(dataGameSport, (newVal, oldVal) => {
+//     console.log("dataGameSport changed:", newVal, oldVal);
+//   });
+// });
 </script>
 <template>
   <!-- <div>
@@ -91,12 +103,21 @@ console.log(dataGameSlot);
             :key="item.id"
             class="flex-col items-center flex justify-center"
           >
-            <img
-              :src="item.image"
-              alt=""
-              srcset=""
-              class="w-36 h-44 rounded-lg"
-            />
+            <div class="relative flex-col items-center flex justify-center">
+              <img :src="item.image" alt="" srcset="" class="w-36 h-44" />
+              <div
+                class="rounded-3xl flex-col items-center flex justify-center w-full h-full hover:opacity-100 opacity-0 absolute bg-hover"
+              >
+                <UButton
+                  icon="i-simple-line-icons-control-play"
+                  size="2xs"
+                  class="text-sm w-18 h-18 text-white m-auto btn btn-blue"
+                  @click="handleButtonClick"
+                >
+                  เข้าเกม
+                </UButton>
+              </div>
+            </div>
             <p class="mt-1">{{ item.game }}</p>
           </span>
         </div>
@@ -108,7 +129,9 @@ console.log(dataGameSlot);
           <p class="flex items-center">เดิมพันกีฬา</p>
           <div class="flex">
             <NuxtLink to="/_lang/sport" class="flex justify-center">
-              <UButton class="justify-center rounded-full w-32"
+              <UButton
+                class="justify-center rounded-full w-32"
+                @click="buttonPageSport"
                 >ดูทั้งหมด</UButton
               >
             </NuxtLink>
@@ -117,11 +140,13 @@ console.log(dataGameSlot);
         <div class="flex justify-between max-w-4xl m-auto mt-6">
           <Swiper
             :slidesPerView="5"
-            :spaceBetween="30"
+            :spaceBetween="20"
+            :navigation="true"
             :pagination="{
               clickable: true,
             }"
-            :Navigation="true"
+            :mousewheel="true"
+            :keyboard="true"
             class="mySwiper"
           >
             <SwiperSlide
@@ -129,12 +154,27 @@ console.log(dataGameSlot);
               :key="item.id"
               class="flex-col items-center flex justify-center"
             >
-              <img
-                :src="getImagePosterGame(item.providerName)"
-                alt=""
-                srcset=""
-                class="w-36 h-44 rounded-lg"
-              />
+              <div class="relative flex-col items-center flex justify-center">
+                <img
+                  :src="getImagePosterGame(item.providerName)"
+                  alt=""
+                  srcset=""
+                  class="rounded-lg w-36 h-44"
+                />
+
+                <div
+                  class="rounded-lg flex-col items-center flex justify-center w-full h-full hover:opacity-100 opacity-0 absolute bg-hover"
+                >
+                  <UButton
+                    icon="i-simple-line-icons-control-play"
+                    size="2xs"
+                    class="text-sm w-18 h-18 text-white m-auto btn btn-blue"
+                    @click="handleButtonClick"
+                  >
+                    เข้าเกม
+                  </UButton>
+                </div>
+              </div>
               <p class="mt-1 text-sm">{{ item.providerName }}</p>
             </SwiperSlide>
           </Swiper>
@@ -156,10 +196,13 @@ console.log(dataGameSlot);
         <div class="flex justify-between max-w-4xl m-auto mt-6">
           <Swiper
             :slidesPerView="5"
-            :spaceBetween="30"
+            :spaceBetween="20"
+            :navigation="true"
             :pagination="{
               clickable: true,
             }"
+            :mousewheel="true"
+            :keyboard="true"
             class="mySwiper"
           >
             <SwiperSlide
@@ -167,12 +210,26 @@ console.log(dataGameSlot);
               :key="item.id"
               class="flex-col items-center flex justify-center"
             >
-              <img
-                :src="getImagePosterGame(item.providerName)"
-                alt=""
-                srcset=""
-                class="w-36 h-44 rounded-lg"
-              />
+              <div class="relative flex-col items-center flex justify-center">
+                <img
+                  :src="getImagePosterGame(item.providerName)"
+                  alt=""
+                  srcset=""
+                  class="w-36 h-44 rounded-lg"
+                />
+                <div
+                  class="flex-col items-center flex justify-center w-full h-full hover:opacity-100 opacity-0 absolute bg-hover"
+                >
+                  <UButton
+                    icon="i-simple-line-icons-control-play"
+                    size="2xs"
+                    class="text-sm w-18 h-18 text-white m-auto btn btn-blue"
+                    @click="handleButtonClick"
+                  >
+                    เข้าเกม
+                  </UButton>
+                </div>
+              </div>
               <p class="mt-1 text-sm">{{ item.providerName }}</p>
             </SwiperSlide>
           </Swiper>
@@ -194,11 +251,13 @@ console.log(dataGameSlot);
         <div class="flex justify-between max-w-4xl m-auto mt-6">
           <Swiper
             :slidesPerView="5"
-            :spaceBetween="30"
+            :spaceBetween="20"
+            :navigation="true"
             :pagination="{
               clickable: true,
             }"
-            :Navigation="true"
+            :mousewheel="true"
+            :keyboard="true"
             class="mySwiper"
           >
             <SwiperSlide
@@ -206,12 +265,26 @@ console.log(dataGameSlot);
               :key="item.id"
               class="flex-col items-center flex justify-center"
             >
-              <img
-                :src="getImagePosterGame(item.providerName)"
-                alt=""
-                srcset=""
-                class="w-36 h-44 rounded-lg"
-              />
+              <div class="relative flex-col items-center flex justify-center">
+                <img
+                  :src="getImagePosterGame(item.providerName)"
+                  alt=""
+                  srcset=""
+                  class="w-36 h-44 rounded-lg"
+                />
+                <div
+                  class="flex-col items-center flex justify-center w-full h-full hover:opacity-100 opacity-0 absolute bg-hover"
+                >
+                  <UButton
+                    icon="i-simple-line-icons-control-play"
+                    size="2xs"
+                    class="text-sm w-18 h-18 text-white m-auto btn btn-blue"
+                    @click="handleButtonClick"
+                  >
+                    เข้าเกม
+                  </UButton>
+                </div>
+              </div>
               <p class="mt-1 text-sm">{{ item.providerName }}</p>
             </SwiperSlide>
           </Swiper>
@@ -236,12 +309,27 @@ console.log(dataGameSlot);
             :key="item.id"
             class="flex-col items-center flex justify-center"
           >
-            <img
-              :src="getImagePosterGame(item.providerName)"
-              alt=""
-              srcset=""
-              class="w-36 h-44 rounded-lg"
-            />
+            <div class="relative flex-col items-center flex justify-center">
+              <img
+                :src="getImagePosterGame(item.providerName)"
+                alt=""
+                srcset=""
+                class="w-36 h-44 rounded-lg"
+              />
+              <div
+                class="flex-col items-center flex justify-center w-full h-full hover:opacity-100 opacity-0 absolute bg-hover"
+              >
+                <UButton
+                  icon="i-simple-line-icons-control-play"
+                  color="black"
+                  size="2xs"
+                  class="text-sm w-18 h-18 text-white m-auto btn btn-blue"
+                  @click="handleButtonClick"
+                >
+                  เข้าเกม
+                </UButton>
+              </div>
+            </div>
             <p class="mt-1">{{ item.providerName }}</p>
           </span>
         </div>
@@ -249,3 +337,18 @@ console.log(dataGameSlot);
     </template>
   </main>
 </template>
+<style scoped>
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+
+.bg-hover {
+  background-color: rgb(0, 0, 0, 0.7);
+}
+</style>

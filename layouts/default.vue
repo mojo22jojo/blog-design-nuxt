@@ -71,7 +71,7 @@ const photos = [
           >
             <div class="flex">
               <img
-                src="/public/logo text.png"
+                src="~/public/logo text.png"
                 alt="contact factbook"
                 class=""
               />

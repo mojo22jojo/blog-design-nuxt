@@ -1,5 +1,4 @@
 // nuxt.config.js
-
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
@@ -22,5 +21,8 @@ export default defineNuxtConfig({
     public: {
       API_URL_TYPE_GAME: process.env.API_URL_TYPE_GAME || "",
     },
+  },
+  ui: {
+    icons: ["simple-line-icons"],
   },
 });
