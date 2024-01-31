@@ -2,7 +2,30 @@
 import { getResultDataGameSlot, getImagePosterGame } from "~/services/result";
 
 const { data: dataGameSlot } = await getResultDataGameSlot();
-console.log(toRaw(dataGameSlot.value));
+const buttonColor = ref("gray");
+const catagoryButtonColor = ref("gray");
+
+const gameShow = ref(false);
+const typeAllItemsButton = () => {
+  buttonColor.value = buttonColor.value === "gray" ? "green" : "gray";
+  gameShow.value = !gameShow.value;
+};
+// const catagoryAllButton = () => {
+//   catagoryButtonColor.value =
+//     catagoryButtonColor.value === "gray" ? "green" : "gray";
+// };
+onMounted(() => {
+  typeAllItemsButton();
+});
+const searchProviderName = ref("");
+const filteredDataGameSlot = computed(() => {
+  return dataGameSlot.value.filter((item) => {
+    return item.providerName
+      .toLowerCase()
+      .includes(searchProviderName.value.toLowerCase());
+  });
+});
+// function handleSearchProviderName() {}
 </script>
 <template>
   <section class="mt-10">
@@ -15,6 +38,7 @@ console.log(toRaw(dataGameSlot.value));
           :trailing="false"
           placeholder="Search..."
           class="w-full"
+          v-model="searchProviderName"
         />
       </div>
     </div>
@@ -29,57 +53,11 @@ console.log(toRaw(dataGameSlot.value));
               icon="i-simple-line-icons-plus"
               class="w-14 h-7"
               size="xs"
-              color="gray"
+              :color="buttonColor"
+              @click="typeAllItemsButton"
               :ui="{ rounded: 'rounded-full' }"
             >
               All</UButton
-            >
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-14 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              PC</UButton
-            >
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-24 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              MOBILE</UButton
-            >
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-20 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              XBOX</UButton
-            >
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-32 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              PLAYSTATION</UButton
-            >
-          </div>
-          <div class="h-8 grid justify-start items-center">
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-32 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              PLAYSTATION</UButton
             >
           </div>
         </div>
@@ -98,62 +76,16 @@ console.log(toRaw(dataGameSlot.value));
             >
               All</UButton
             >
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-14 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              PC</UButton
-            >
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-24 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              MOBILE</UButton
-            >
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-20 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              XBOX</UButton
-            >
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-32 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              PLAYSTATION</UButton
-            >
-          </div>
-          <div class="h-8 grid items-center justify-start">
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-32 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              PLAYSTATION</UButton
-            >
           </div>
         </div>
       </div>
     </div>
     <div class="grid grid-cols-6 justify-between max-w-5xl m-auto mt-6">
       <span
-        v-for="item in dataGameSlot"
+        v-for="item in filteredDataGameSlot"
         :key="item.id"
         class="flex-col items-center flex justify-center"
+        v-if="gameShow"
       >
         <div class="relative flex-col items-center flex justify-center">
           <img

@@ -2,7 +2,22 @@
 import { getResultDataGameSport, getImagePosterGame } from "~/services/result";
 
 const { data: dataGameSport } = await getResultDataGameSport();
-console.log(toRaw(dataGameSport.value));
+
+const buttonColor = ref("gray");
+const catagoryButtonColor = ref("gray");
+
+const gameShow = ref(false);
+const typeAllItemsButton = () => {
+  buttonColor.value = buttonColor.value === "gray" ? "green" : "gray";
+  gameShow.value = !gameShow.value;
+};
+const catagoryAllButton = () => {
+  catagoryButtonColor.value =
+    catagoryButtonColor.value === "gray" ? "green" : "gray";
+};
+onMounted(() => {
+  typeAllItemsButton();
+});
 </script>
 <template>
   <section class="mt-10">
@@ -29,12 +44,13 @@ console.log(toRaw(dataGameSport.value));
               icon="i-simple-line-icons-plus"
               class="w-14 h-7"
               size="xs"
-              color="gray"
+              :color="buttonColor"
+              @click="typeAllItemsButton"
               :ui="{ rounded: 'rounded-full' }"
             >
               All</UButton
             >
-            <UButton
+            <!-- <UButton
               icon="i-simple-line-icons-plus"
               class="w-14 h-7"
               size="xs"
@@ -80,7 +96,7 @@ console.log(toRaw(dataGameSport.value));
               :ui="{ rounded: 'rounded-full' }"
             >
               PLAYSTATION</UButton
-            >
+            > -->
           </div>
         </div>
       </div>
@@ -98,7 +114,7 @@ console.log(toRaw(dataGameSport.value));
             >
               All</UButton
             >
-            <UButton
+            <!-- <UButton
               icon="i-simple-line-icons-plus"
               class="w-14 h-7"
               size="xs"
@@ -144,7 +160,7 @@ console.log(toRaw(dataGameSport.value));
               :ui="{ rounded: 'rounded-full' }"
             >
               PLAYSTATION</UButton
-            >
+            > -->
           </div>
         </div>
       </div>

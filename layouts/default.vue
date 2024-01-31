@@ -190,8 +190,8 @@ const photos = [
   </div>
 </template>
 <style scoped>
-.hand-cursor {
+/* .hand-cursor {
   cursor: pointer;
   cursor: url("path/to/hand-cursor.png"), auto;
-}
+} */
 </style>

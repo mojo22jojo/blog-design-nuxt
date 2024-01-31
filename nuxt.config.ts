@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     preference: "light",
     fallback: "light",
   },
-  // ssr: false,
+  ssr: false,
   runtimeConfig: {
     public: {
       API_URL_TYPE_GAME: process.env.API_URL_TYPE_GAME || "",
