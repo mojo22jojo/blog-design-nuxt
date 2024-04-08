@@ -3,7 +3,7 @@
 // App Config
 import type { Defu } from 'defu'
 
-import type { default as appConfig0 } from "/Users/mojo.jojo/Documents/member-frontend/app.config";
+import type { default as appConfig0 } from "/Users/mojo.jojo/Documents/member-frontend 2/app.config";
 
 type UserAppConfig = Defu<{}, [typeof appConfig0]>
 

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: "Term Game",
+      title: "travel",
       meta: [{ name: "description", content: "รายละเอียดเว็บไซต์" }],
     },
   },

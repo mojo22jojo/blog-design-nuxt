@@ -1,10 +1,19 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
-
 import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 import ModalRegister from "~/components/ModalRegister.vue";
 import ModalLogin from "~/components/ModalLogin.vue";
 
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Keyboard,
+} from "swiper/core";
+SwiperCore.use([Navigation, Pagination, Mousewheel, Keyboard]);
 // components modal Register
 const showRegister = ref(false);
 const openRegister = () => {
@@ -26,13 +35,7 @@ const closeLogin = () => {
   showLogin.value = false;
 };
 import "swiper/css";
-const photos = [
-  "theam-valorant.png",
-  "theme-rov.png",
-  "theme-ragnarok.png",
-  "theme-god-of-war.png",
-  "theme-hon.png",
-];
+const photos = ["1.jpg", "2.jpg", "4.jpg", "6.jpg", "7.jpg"];
 </script>
 <template>
   <div>
@@ -45,7 +48,7 @@ const photos = [
             alt="contact factbook"
             class="w-5 h-5 mt-0.5"
           />
-          <span>เวลาทำการ 10:00 - 22:00</span>
+          <span>xxx</span>
         </div>
         <div class="flex">
           <img
@@ -53,7 +56,7 @@ const photos = [
             alt="contact line"
             class="w-4 h-4 mt-1"
           />
-          <span class="mr-4 item-center">@Term711</span>
+          <span class="mr-4 item-center">xxx</span>
           <img
             src="/assets/icon/el_phone-alt.png"
             alt="contact phone"
@@ -70,11 +73,11 @@ const photos = [
             class="text-white flex justify-between m-auto p-1 flex justify-center items-center w-full"
           >
             <div class="flex">
-              <img
+              <!-- <img
                 src="~/public/logo text.png"
                 alt="contact factbook"
                 class=""
-              />
+              /> -->
             </div>
             <div class="flex justify-between items-center w-96">
               <div class="flex justify-center items-center w-48 border-r-4">
@@ -113,13 +116,13 @@ const photos = [
       </div>
     </nav>
     <div>
-      <main class="flex justify-center">
-        <Swiper>
+      <div class="flex justify-center">
+        <Swiper :navigation="true" :mousewheel="true" :keyboard="true">
           <SwiperSlide v-for="photo in photos" :key="photo.id" class="relative">
             <img :src="`${photo}`" alt="" class="max-w-auto m-auto w-full" />
           </SwiperSlide>
         </Swiper>
-      </main>
+      </div>
       <!-- <Banner /> -->
     </div>
     <slot />
@@ -128,18 +131,13 @@ const photos = [
     <div class="bg-black mt-44 h-96 py-14">
       <div class="flex justify-between max-w-4xl h-72 m-auto">
         <div class="text-white w-96">
-          <div class="h-14 flex items-center">
-            <img src="~/public/logo text.png" alt="logo text" />
-          </div>
+          <div class="h-14 flex items-center"></div>
 
-          <p class="mt-4 text-base">
-            ร้านเติมเซเว่น เป็นเพียงตัวแทนจำหน่ายเท่านั้น
-            ไม่มีส่วนเกี่ยวข้องกับองค์กรหรือบุคคลใดๆที่แอบอ้างใช้ชื่อบัญชีธนาคารร้านเติมเซเว่นเครดิตในเว็บไซต์ใช้สำหรับซื้อสินค้าภายในเว็บไซต์เติมเซเว่นเท่านั้นโปรดระวังมิจฉาชีพแอบอ้างบัญชีเราเพื่อหลอกให้ผู้อื่นจ่ายค่าสินค้าแทน
-          </p>
+          <p class="mt-4 text-base"></p>
 
           <p class="mt-9 text-sm">Follow Us On Social</p>
           <span class="flex justify-between flex items-center w-20">
-            <img src="/assets/social/devicon_facebook.png" />
+            <!-- <img src="/assets/social/devicon_facebook.png" /> -->
             <img
               src="/assets/social/logos_youtube-icon.png"
               class="h-4 flex justify-center"
