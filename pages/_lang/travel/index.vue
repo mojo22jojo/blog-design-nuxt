@@ -63,23 +63,6 @@ const { searchProviderName: searchSport, filteredData: filteredDataSport } =
           </div>
         </div>
       </div>
-      <!-- ... -->
-      <!-- <div class="h-24 max-w-md">
-        <p class="h-8 grid items-center">หมวดหมู่ของเกมส์</p>
-        <div class="grid grid-row-2">
-          <div class="h-8 grid grid-flow-col justify-stretch items-center">
-            <UButton
-              icon="i-simple-line-icons-plus"
-              class="w-14 h-7"
-              size="xs"
-              color="gray"
-              :ui="{ rounded: 'rounded-full' }"
-            >
-              All</UButton
-            >
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="grid grid-cols-6 justify-between max-w-5xl m-auto mt-6">
       <span
